@@ -9,6 +9,37 @@ use App\Models\Account\ApiUsage;
 use App\Http\Controllers\Controller;
 use App\Traits\JsonRespondController;
 
+/**
+ * @OA\Info(
+ *      version="1.0.0",
+ *      title="Monica Api",
+ *      description="Monica Api",
+ *      @OA\Contact(
+ *          email="contact@monicahq.com"
+ *      ),
+ *     @OA\License(
+ *         name="AGPL-3.0",
+ *         url="https://www.gnu.org/licenses/agpl-3.0.html"
+ *     )
+ * )
+ *
+ * @OA\SecurityScheme(
+ *     type="oauth2",
+ *     description="Use a global client_id / client_secret and your username / password combo to obtain a token",
+ *     name="Password Based",
+ *     in="header",
+ *     scheme="https",
+ *     securityScheme="Password Based",
+ *     @OA\Flow(
+ *         flow="password",
+ *         authorizationUrl="/oauth/authorize",
+ *         tokenUrl="/oauth/token",
+ *         refreshUrl="/oauth/token/refresh",
+ *         scopes={}
+ *     )
+ * )
+ */
+
 class ApiController extends Controller
 {
     use JsonRespondController;
