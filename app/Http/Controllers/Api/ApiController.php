@@ -39,7 +39,6 @@ use App\Traits\JsonRespondController;
  *     )
  * )
  */
-
 class ApiController extends Controller
 {
     use JsonRespondController;
