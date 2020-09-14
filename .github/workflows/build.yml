@@ -16,6 +16,8 @@ jobs:
   ######################
   build:
     runs-on: ubuntu-latest
+    name: Build assets
+
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
@@ -49,15 +51,26 @@ jobs:
 
 
   ######################
-  # Tests with sqlite
+  # Unit tests
   ######################
   tests:
     needs: build
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_DATABASE: monica
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     strategy:
       fail-fast: false
       matrix:
-        php-version: [7.4]
+        php-version: ['7.4']
+        connection: [sqlite, mysql]
+    name: Test on ${{ matrix.connection }} (PHP ${{ matrix.php-version }})
 
     steps:
       - name: Checkout sources
@@ -67,6 +80,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, fileinfo, mysql
           coverage: none
       - name: Check PHP Version
         run: php -v
@@ -91,8 +105,12 @@ jobs:
             ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
             ${{ runner.os }}-composer-
 
+      - name: Set Composer command line options
+        if: matrix.php-version == '8.0'
+        id: composer-option
+        run: echo "::set-output name=option::--ignore-platform-reqs"
       - name: Install composer dependencies
-        run: composer install --no-progress --no-interaction --no-suggest --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --no-interaction --no-suggest --prefer-dist --optimize-autoloader ${{ steps.composer-option.outputs.option }}
 
     # Assets
       - name: Download assets
@@ -100,12 +118,12 @@ jobs:
         with:
           name: assets
           path: public
-      - run: ls -AlF public
 
     # Prepare
       - name: Prepare environment
-        run: cp tests/.env.ci.sqlite .env
+        run: cp tests/.env.ci-${{ matrix.connection }} .env
       - name: Create SQLite database
+        if: matrix.connection == 'sqlite'
         run: |
           mkdir -p database
           touch database/database.sqlite
@@ -114,13 +132,13 @@ jobs:
         run: php artisan key:generate
 
       - name: Run migrations
-        run: php artisan migrate
+        run: php artisan migrate --no-interaction -vvv
       - name: Run seeds
         run: php artisan db:seed --no-interaction -vvv
 
     # Test
       - name: Run test suite
-        run: phpdbg -dmemory_limit=4G -qrr vendor/bin/phpunit -c phpunit.xml --log-junit ./results/results.xml --coverage-clover ./results/coverage.xml
+        run: phpdbg -dmemory_limit=4G -qrr vendor/bin/phpunit -c phpunit.xml --log-junit ./results/${{ matrix.connection }}/results.xml --coverage-clover ./results/${{ matrix.connection }}/coverage.xml
 
       - name: Store results
         uses: actions/upload-artifact@v2
@@ -135,6 +153,7 @@ jobs:
   reporting:
     needs: tests
     runs-on: ubuntu-latest
+    name: Sonarcloud
 
     steps:
       - name: Checkout repository
@@ -155,8 +174,8 @@ jobs:
 
       - name: Fix results files
         run: |
-          sed -i -e "s%$GITHUB_WORKSPACE/%%g" results/results.xml
-          sed -i -e "s%$GITHUB_WORKSPACE/%%g" results/coverage.xml
+          sed -i -e "s%$GITHUB_WORKSPACE/%%g" results/sqlite/results.xml
+          sed -i -e "s%$GITHUB_WORKSPACE/%%g" results/sqlite/coverage.xml
 
       - name: SonarCloud Scan
         if: env.SONAR_TOKEN != ''
@@ -179,7 +198,7 @@ jobs:
         browser: [chrome, firefox]
         containers: [1]
       max-parallel: 10
-    name: Cypress Test with PHP ${{ matrix.php-version }} browser ${{ matrix.browser }}
+    name: Cypress Test on ${{ matrix.browser }} (PHP ${{ matrix.php-version }})
 
     steps:
       - name: Checkout sources
@@ -238,13 +257,12 @@ jobs:
         with:
           name: assets
           path: public
-      - run: ls -AlF public
 
     # Prepare
       - name: Prepare environment
         run: |
           mkdir -p results/coverage
-          cp tests/.env.ci.sqlite .env
+          cp tests/.env.ci-sqlite .env
       - name: Create SQLite database
         run: |
           mkdir -p database
@@ -254,7 +272,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Run migrations
-        run: php artisan migrate
+        run: php artisan migrate -v
       - name: Run seeds
         run: php artisan db:seed --no-interaction -vvv
 

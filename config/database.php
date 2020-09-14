@@ -98,10 +98,10 @@ return [
             'database' => env('DB_TEST_DATABASE'),
             'username' => env('DB_TEST_USERNAME'),
             'password' => env('DB_TEST_PASSWORD'),
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'strict' => false,
+            'strict' => true,
         ],
 
     ],
