@@ -48,25 +48,6 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->configureRateLimiting();
 
-        $this->routes(function () {
-            Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace.'\Api')
-                ->group(base_path('routes/api.php'));
-
-            Route::prefix('oauth')
-                ->namespace($this->namespace.'\Api')
-                ->group(base_path('routes/oauth.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/web.php'));
-
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/special.php'));
-        });
-
         Route::bind('contact', function ($value) {
             // In case the user is logged out
             if (! Auth::check()) {
@@ -88,6 +69,29 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::model('otherContact', Contact::class);
+    }
+
+    /**
+     * Define the routes for the application.
+     */
+    public function map(): void
+    {
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace.'\Api')
+            ->group(base_path('routes/api.php'));
+
+        Route::prefix('oauth')
+            ->namespace($this->namespace.'\Api')
+            ->group(base_path('routes/oauth.php'));
+
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
+
+        Route::middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/special.php'));
     }
 
     /**
