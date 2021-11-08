@@ -32,7 +32,9 @@ mix.extend('mergeManifest', function (config, ...args) {
 
 mix.js('resources/js/app2.js', 'js').vue()
   .css('resources/css/app2.css', 'css', [
-    require("tailwindcss"),
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
   ])
   .webpackConfig({
     output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
