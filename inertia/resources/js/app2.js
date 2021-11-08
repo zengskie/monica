@@ -4,6 +4,9 @@ require('./bootstrap');
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/lib/popover/style/index.css';
+import 'ant-design-vue/lib/dropdown/style/index.css';
 
 const langs = require('./langs').default;
 
@@ -29,6 +32,7 @@ langs.loadLanguage(document.querySelector('html').getAttribute('lang'), true)
           }
         }, require('./methods').default) })
           .use(plugin)
+          .use(Antd)
           .use(langs.i18n)
           .mount(el);
 

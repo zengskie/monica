@@ -27,6 +27,7 @@ input[type=checkbox] {
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <!-- left -->
           <div class="p-3 sm:p-0">
+            <!-- favorites -->
             <h3 class="font-medium border-b border-gray-200 mb-3">
               <span class="relative">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon-sidebar h-4 w-4 inline relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,21 +37,21 @@ input[type=checkbox] {
               Favorites
             </h3>
             <div class="flex text-sm items-center mb-2">
-              <img class="rounded-full mr-2" src="https://ucarecdn.com/2f86ee48-9258-4b5c-aaf5-82269edcf770/-/scale_crop/25x25/smart/" alt="" />
-              <a class="colored-link" href="">Lorraine Del Giaccosldkfjalsdjkfs</a>
+              <small-contact />
             </div>
             <div class="flex text-sm items-center mb-2">
-              <img class="rounded-full mr-2"
-                   src="https://ucarecdn.com/2f86ee48-9258-4b5c-aaf5-82269edcf770/-/scale_crop/25x25/smart/" alt=""
-              />
-              <a class="colored-link" href="">Lorraine Del Giacco</a>
+              <small-contact />
             </div>
-            <div class="flex text-sm items-center mb-2">
-              <img class="rounded-full mr-2"
-                   src="https://ucarecdn.com/2f86ee48-9258-4b5c-aaf5-82269edcf770/-/scale_crop/25x25/smart/" alt=""
-              />
-              John Mac Biden
-            </div>
+
+            <!-- goals -->
+            <h3 class="font-medium border-b border-gray-200 mb-3">
+              <span class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-sidebar h-4 w-4 inline relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+              </span>
+              Current goals
+            </h3>
           </div>
 
           <!-- middle -->
@@ -87,6 +88,8 @@ input[type=checkbox] {
 
               <!-- journal entry -->
               <entry />
+
+              <feed-item />
 
               <!-- activity -->
               <activity />
@@ -152,17 +155,21 @@ input[type=checkbox] {
 <script>
 import Layout from '@/Layout/Layout';
 import LoadingButton from '@/Common/LoadingButton';
+import SmallContact from '@/Common/SmallContact';
 import Activity from '@/Pages/Dashboard/Partials/Activity';
 import Entry from '@/Pages/Dashboard/Partials/Entry';
 import Goal from '@/Pages/Dashboard/Partials/Goal';
+import FeedItem from '@/Pages/Dashboard/Partials/FeedItem';
 
 export default {
   components: {
     Layout,
     LoadingButton,
+    SmallContact,
     Entry,
     Activity,
     Goal,
+    FeedItem,
   },
 
   props: {

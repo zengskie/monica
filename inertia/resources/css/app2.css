@@ -15,3 +15,16 @@
 body {
     background-color: #fff;
 }
+
+.tag {
+    background-color: #edf6fd;
+    padding: 2px 7px;
+    border-radius: 3px;
+}
+.tag:hover {
+    background-color: #dcedfa;
+}
+.tag:before {
+    content: "#";
+    display: inline-block;
+}

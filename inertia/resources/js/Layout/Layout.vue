@@ -47,7 +47,7 @@
               <div class="">
                 <div class="hidden md:block">
                   <div class="flex items-baseline space-x-6">
-                    <Link href="" class="bg-blue-400 text-white px-2 py-1 rounded-md text-sm font-medium"
+                    <Link href="" class="bg-blue-700 text-white px-2 py-1 rounded-md text-sm font-medium"
                                   aria-current="page"
                     >
                       Dashboard
