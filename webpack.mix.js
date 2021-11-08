@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 const path = require('path');
 require('laravel-mix-purgecss');
+require('laravel-mix-merge-manifest');
 
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 mix.webpackConfig({
@@ -55,6 +56,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
   .purgeCss(purgeCssOptions)
   .extract()
   .sourceMaps(process.env.MIX_PROD_SOURCE_MAPS || false, 'eval-cheap-module-source-map', 'source-map')
+  .mergeManifest()
   .setResourceRoot('../');
 
 if (mix.inProduction()) {

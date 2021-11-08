@@ -47,6 +47,7 @@ return [
     'file_selected' => 'One file selected…|{count} files selected…',
 
     'application_title' => 'Monica – personal relationship manager',
+    'application_title_dynamic' => '{title} – Monica',
     'application_description' => 'Monica is a tool to manage your interactions with your loved ones, friends, and family.',
     'application_og_title' => 'Have better relations with your loved ones. Free online CRM for friends and family.',
 
