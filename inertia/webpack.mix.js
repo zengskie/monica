@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
 const path = require('path');
-require('laravel-mix-purgecss');
 
 // See https://github.com/kabbouchi/laravel-mix-merge-manifest
 let ManifestPlugin = require('laravel-mix/src/webpackPlugins/ManifestPlugin');
@@ -31,21 +30,10 @@ mix.extend('mergeManifest', function (config, ...args) {
   });
 });
 
-
-const purgeCssOptions = {
-  safelist: {
-    // List of regex of CSS class to not remove
-    standard: [/^vs__/],
-    // List of regex of CSS class name whose child path CSS class will not be removed
-    //  ex: to exclude "jane" in "mary jane": add "mary")
-    deep: [/^vue-loaders/, /^vs-/],
-  }
-};
-
 mix.js('resources/js/app2.js', 'js').vue()
-  .sass('resources/css/app2-ltr.scss', 'css')
-  .sass('resources/css/app2-rtl.scss', 'css')
-  .purgeCss(purgeCssOptions)
+  .css('resources/css/app2.css', 'css', [
+    require("tailwindcss"),
+  ])
   .webpackConfig({
     output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
   })
