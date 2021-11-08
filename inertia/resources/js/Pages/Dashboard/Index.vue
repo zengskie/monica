@@ -22,7 +22,7 @@ input[type=checkbox] {
 
 <template>
   <Layout title="Home">
-    <main class="mt-24 relative">
+    <main class="sm:mt-24 relative">
       <div class="max-w-8xl mx-auto py-2 sm:py-6 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <!-- left -->
@@ -243,7 +243,7 @@ input[type=checkbox] {
           </div>
 
           <!-- right -->
-          <div>
+          <div class="p-3 sm:p-0">
             <div class="mb-10">
               <h3 class="font-medium mb-3 border-b border-gray-200">
                 <span class="relative">

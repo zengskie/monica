@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-title" content="Monica" />
     <meta name="application-name" content="Monica" />
     <meta name="theme-color" content="#325776" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="manifest" href="manifest.webmanifest" />
 
