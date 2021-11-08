@@ -311,4 +311,10 @@ Route::middleware(['auth', 'verified', 'mfa'])->group(function () {
     });
 
     Route::get('/home', [HomeController::class, 'index']);
+
+    Route::name('next.')->group(function () {
+        Route::name('dashboard.')->group(function () {
+            Route::get('/dashboard', 'Next\\Dashboard\\DashboardController@index')->name('index');
+        });
+    });
 });
