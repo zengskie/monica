@@ -8,7 +8,7 @@ use Inertia\Response;
 class HomeController extends Controller
 {
     /**
-     * Test
+     * Test.
      *
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
      */
