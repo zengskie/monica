@@ -60,42 +60,6 @@ input[type=checkbox] {
               <p class="text-center mb-5"><span class="mr-2">👋</span> Good evening, Regis.</p>
 
               <div class="sm:flex justify-center mb-5">
-                <!-- <button type="btn"
-                  class="btn">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                  life event
-                </button>
-                <button
-                  class="btn">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                  activity
-                </button>
-                <button
-                  class="btn">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-4 w-4 text-gray-500 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  entry
-                </button>
-                <button
-                  class="btn">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                  mood
-                </button>
-                <button
-                  class="btn">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
-                  communication
-                </button> -->
                 <loading-button :text="'life event'" :icon="'plus'" :classes="'mr-3'" />
                 <loading-button :text="'activity'" :icon="'plus'" :classes="'mr-3'" />
                 <loading-button :text="'entry'" :icon="'plus'" :classes="'mr-3'" />
@@ -118,117 +82,17 @@ input[type=checkbox] {
             </div>
 
             <!-- feed -->
-            <div class="mb-10">
-              <div class="relative bg-white border-gray-200 border sm:rounded-lg mb-7">
-                <span class="absolute text-xs border text-blue-500 bg-blue-50 px-2 py-0 rounded" style="top: -10px; left: 10px;">
-                  entry
-                </span>
-                <div class="p-3 pt-5">
-                  <p>
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                    voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-                    veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-                    autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
-                    eum fugiat quo voluptas nulla pariatur?
-                  </p>
-                </div>
-                <div class="border-t border-gray-200 flex justify-between text-xs text-gray-600 p-2">
-                  <div>
-                    <div class="inline mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      Sept 21, 2020
-                    </div>
-                    <div class="inline">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                        />
-                      </svg>
-                      Published online
-                    </div>
-                  </div>
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="relative bg-white border-gray-200 border sm:rounded-lg">
-                <span class="absolute text-xs border text-blue-500 bg-blue-50 px-2 py-0 rounded" style="top: -10px; left: 10px;">
-                  activity
-                </span>
-                <div class="p-3 pt-5">
-                  <p class="inline">Went to the theater</p>
-                </div>
-                <div class="border-t border-gray-200 px-3 py-2">
-                  <span class="text-sm text-gray-500 mr-3">
-                    With
-                  </span>
-                  <div class="inline text-sm mb-2 mr-2">
-                    <img class="inline rounded-full mr-1"
-                         src="https://ucarecdn.com/2f86ee48-9258-4b5c-aaf5-82269edcf770/-/scale_crop/25x25/smart/" alt=""
-                    />
-                    <a class="underline" href="">Lorraine Del Giacco</a>
-                  </div>
-                  <div class="inline text-sm mb-2">
-                    <img class="inline rounded-full mr-1"
-                         src="https://ucarecdn.com/2f86ee48-9258-4b5c-aaf5-82269edcf770/-/scale_crop/25x25/smart/" alt=""
-                    />
-                    <a class="underline" href="">Lorraine Del Giacco</a>
-                  </div>
-                </div>
-                <div class="border-t border-gray-200 px-3 py-2 flex">
-                  <div class="mr-3">
-                    <span class="text-sm text-gray-500 mr-3">
-                      At
-                    </span>
-                    <div class="inline text-sm mb-2 mr-2">
-                      Place Dupuis
-                    </div>
-                  </div>
-                  <div>
-                    <span class="text-sm text-gray-500 mr-3">
-                      Rating
-                    </span>
-                    <div class="inline text-sm mb-2 mr-2">
-                      ★✩✩✩✩
-                    </div>
-                  </div>
-                </div>
-                <div class="border-t border-gray-200 flex justify-between text-xs text-gray-600 p-2">
-                  <div>
-                    <div class="inline mr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24"
-                           stroke="currentColor"
-                      >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                      Sept 12, 2020
-                    </div>
-                  </div>
-                  <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor"
-                    >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+            <div class="mb-10 overflow-auto">
+              <h3 class="mb-5 font-bold">Janvier 2010</h3>
+
+              <!-- journal entry -->
+              <entry />
+
+              <!-- activity -->
+              <activity />
+
+              <!-- goal -->
+              <goal />
             </div>
 
             <!-- archives -->
@@ -288,12 +152,19 @@ input[type=checkbox] {
 <script>
 import Layout from '@/Layout/Layout';
 import LoadingButton from '@/Common/LoadingButton';
+import Activity from '@/Pages/Dashboard/Partials/Activity';
+import Entry from '@/Pages/Dashboard/Partials/Entry';
+import Goal from '@/Pages/Dashboard/Partials/Goal';
 
 export default {
   components: {
     Layout,
     LoadingButton,
+    Entry,
+    Activity,
+    Goal,
   },
+
   props: {
     user: {
       type: Object,

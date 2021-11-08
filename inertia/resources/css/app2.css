@@ -11,3 +11,7 @@
     @apply text-xl;
   }
 }
+
+body {
+    background-color: #fff;
+}
