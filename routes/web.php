@@ -314,7 +314,7 @@ Route::middleware(['auth', 'verified', 'mfa'])->group(function () {
 
     Route::name('next.')->group(function () {
         Route::name('dashboard.')->group(function () {
-            Route::get('/dashboard', 'Next\\Dashboard\\DashboardController@index')->name('index');
+            Route::get('/next/dashboard', 'Next\\Dashboard\\DashboardController@index')->name('index');
         });
     });
 });
