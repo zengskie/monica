@@ -42,31 +42,27 @@ input[type=checkbox] {
             <div class="flex text-sm items-center mb-2">
               <small-contact />
             </div>
-
-            <!-- goals -->
-            <h3 class="font-medium border-b border-gray-200 mb-3">
-              <span class="relative">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-sidebar h-4 w-4 inline relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                </svg>
-              </span>
-              Current goals
-            </h3>
           </div>
 
           <!-- middle -->
           <div class="p-3 sm:p-0">
             <!-- actions -->
-            <div style="background-color: #fcfeff;" class="bg-white border border-gray-200 rounded-lg p-3 mb-6">
-              <p class="text-center mb-5"><span class="mr-2">👋</span> Good evening, Regis.</p>
+            <div style="background-color: #fcfeff;" class="bg-white border border-gray-200 rounded-lg mb-6">
+              <div v-if="!addMode" class="p-3">
+                <p class="text-center mb-5"><span class="mr-2">👋</span> Good evening, Regis.</p>
 
-              <div class="sm:flex justify-center mb-5">
-                <loading-button :text="'life event'" :icon="'plus'" :classes="'mr-3'" />
-                <loading-button :text="'activity'" :icon="'plus'" :classes="'mr-3'" />
-                <loading-button :text="'entry'" :icon="'plus'" :classes="'mr-3'" />
-                <loading-button :text="'mood'" :icon="'plus'" :classes="'mr-3'" />
-                <loading-button :text="'communication'" :icon="'plus'" :classes="'mr-3'" />
-                <loading-button :text="'goal'" :icon="'plus'" />
+                <div class="sm:flex justify-center mb-2">
+                  <monica-button @click="showAddModal('lifeEvent')" :text="'life event'" :icon="'plus'" :classes="'mr-3'" />
+                  <monica-button :text="'activity'" :icon="'plus'" :classes="'mr-3'" />
+                  <monica-button :text="'entry'" :icon="'plus'" :classes="'mr-3'" />
+                  <monica-button :text="'mood'" :icon="'plus'" :classes="'mr-3'" />
+                  <monica-button :text="'communication'" :icon="'plus'" :classes="'mr-3'" />
+                  <monica-button :text="'goal'" :icon="'plus'" />
+                </div>
+              </div>
+
+              <div v-if="addMode" class="p-5">
+                <create-life-event v-on:cancelled="addMode = false" />
               </div>
             </div>
 
@@ -88,6 +84,8 @@ input[type=checkbox] {
 
               <!-- journal entry -->
               <entry />
+
+              <feed-item />
 
               <feed-item />
 
@@ -135,13 +133,13 @@ input[type=checkbox] {
             </h3>
             <div class="flex items-start mb-3 relative">
               <input id="remember-me" name="remember-me" type="checkbox" class="relative h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-              <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+              <label for="remember-me" class="cursor-pointer ml-2 block text-sm text-gray-900">
                 Remember mea sdfasdf asdf asdf asdf sdf
               </label>
             </div>
             <div class="flex items-start">
               <input id="remember-me" name="remember-me" type="checkbox" class="relative h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-              <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+              <label for="remember-me" class="cursor-pointer ml-2 block text-sm text-gray-900">
                 Remember me
               </label>
             </div>
@@ -154,22 +152,24 @@ input[type=checkbox] {
 
 <script>
 import Layout from '@/Layout/Layout';
-import LoadingButton from '@/Common/LoadingButton';
+import MonicaButton from '@/Common/MonicaButton';
 import SmallContact from '@/Common/SmallContact';
-import Activity from '@/Pages/Dashboard/Partials/Activity';
-import Entry from '@/Pages/Dashboard/Partials/Entry';
-import Goal from '@/Pages/Dashboard/Partials/Goal';
-import FeedItem from '@/Pages/Dashboard/Partials/FeedItem';
+import Activity from '@/Pages/Dashboard/Partials/Feed/Activity';
+import Entry from '@/Pages/Dashboard/Partials/Feed/Entry';
+import Goal from '@/Pages/Dashboard/Partials/Feed/Goal';
+import FeedItem from '@/Pages/Dashboard/Partials/Feed/FeedItem';
+import CreateLifeEvent from '@/Common/CreateLifeEvent';
 
 export default {
   components: {
     Layout,
-    LoadingButton,
+    MonicaButton,
     SmallContact,
     Entry,
     Activity,
     Goal,
     FeedItem,
+    CreateLifeEvent,
   },
 
   props: {
@@ -177,6 +177,20 @@ export default {
       type: Object,
       default: null,
     }
+  },
+
+  data() {
+    return {
+      addMode: false,
+    };
+  },
+
+  methods: {
+    showAddModal(type) {
+      if (type == 'lifeEvent') {
+        this.addMode = true;
+      }
+    },
   },
 };
 </script>
